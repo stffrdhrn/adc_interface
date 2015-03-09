@@ -8,11 +8,11 @@
  */
 module adc_interface 
     (input [1:0]    addr,
-	  output [11:0]  data,
-	  input          sclk,
-	  input          rst,
-	  input          din,
-	  output         dout);
+     output [11:0]  data,
+     input          sclk,
+     input          rst,
+     input          din,
+     output         dout);
 
 
 reg [3:0]     sclk_count;
@@ -37,18 +37,18 @@ always @ (posedge addr_inc or posedge rst)
     dout_addr <= 2'b00;
   else
     dout_addr <= dout_addr + 1'b1;
-	 
+    
 /* Serial DOUT, based on sclk count, send the current address bit MSB first. 
  * Note: since we are only selecting 4 Analog ports we just have 2 bits to send
  * during the 2nd clock cycle we went a zero by defualt. 
  */
 always @ (*)
   case (sclk_count)
-	 4'd3: dout = dout_addr[1];
-	 4'd4: dout = dout_addr[0];
-	 default: dout = 1'b0;
+    4'd3: dout = dout_addr[1];
+    4'd4: dout = dout_addr[0];
+    default: dout = 1'b0;
   endcase
-	  
+     
 /* DeSerialize DIN, use a shift register to move DIN into a 12 bit register during
  * clock cycles 4 -> 15
  */
@@ -57,9 +57,9 @@ always @ (posedge sclk or posedge rst)
       din_ff <= 12'd0;
   else
     casez (sclk_count)
-		4'b01??, 4'b1???: din_ff <= {din_ff[10:0],din};
+      4'b01??, 4'b1???: din_ff <= {din_ff[10:0],din};
     endcase
-	  
+     
 /* Return static ram on read interface
  * Write shift register to static ram on first clock
  */ 
@@ -69,6 +69,5 @@ always @ (posedge sclk) begin
   end
   data <= data_ram[addr];
 end
-    
-	  
+
 endmodule
