@@ -21,15 +21,15 @@ agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 312 128)
-	(text "max" (rect 5 0 22 12)(font "Arial" ))
+	(rect 16 16 192 128)
+	(text "led_driver" (rect 5 0 45 12)(font "Arial" ))
 	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "din[BUS_WIDTH-1..0]" (rect 0 0 89 12)(font "Arial" ))
-		(text "din[BUS_WIDTH-1..0]" (rect 21 27 110 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32)(line_width 3))
+		(text "rst" (rect 0 0 10 12)(font "Arial" ))
+		(text "rst" (rect 21 27 31 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 1))
 	)
 	(port
 		(pt 0 48)
@@ -41,24 +41,18 @@ agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "rst" (rect 0 0 10 12)(font "Arial" ))
-		(text "rst" (rect 21 59 31 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 1))
+		(text "dinput[5..0]" (rect 0 0 42 12)(font "Arial" ))
+		(text "dinput[5..0]" (rect 21 59 63 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
-		(pt 296 32)
+		(pt 176 32)
 		(output)
-		(text "maxout[BUS_WIDTH-1..0]" (rect 0 0 108 12)(font "Arial" ))
-		(text "maxout[BUS_WIDTH-1..0]" (rect 167 27 275 39)(font "Arial" ))
-		(line (pt 296 32)(pt 280 32)(line_width 3))
+		(text "leds[7..0]" (rect 0 0 35 12)(font "Arial" ))
+		(text "leds[7..0]" (rect 120 27 155 39)(font "Arial" ))
+		(line (pt 176 32)(pt 160 32)(line_width 3))
 	)
-	(parameter
-		"BUS_WIDTH"
-		"6"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 280 96)(line_width 1))
+		(rectangle (rect 16 16 160 96)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 312 -64 412 16))
 )

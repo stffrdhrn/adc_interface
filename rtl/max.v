@@ -40,7 +40,7 @@ always @ (posedge dclk or posedge rst)
     max_current <= max_next;
     
 /* Handle max output when sampling is done */
-always @ (posedge sample_done) begin
+always @ (posedge sample_done or posedge rst) begin
   if (rst) 
    maxout <= {BUS_WIDTH{1'b0}};
   else
