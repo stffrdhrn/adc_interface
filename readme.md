@@ -16,7 +16,7 @@ memory with 8 addresses, which can be read by another module.
 ## Project Status/TODO
  - [x] Compiles
  - [ ] simulated
- - [ ] confirmed in FPGA
+ - [x] confirmed in FPGA
 
 ## Project Setup
 This project has been developed with quartus II. 
