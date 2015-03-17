@@ -1,8 +1,8 @@
 # _ADC Interface_
 
-_Description: This project provides a memory mapped interface for the TI 
+_Description: This project provides a serial (SPI) to memory mapped interface for the TI 
 [ADC128S022](http://www.ti.com/lit/ds/symlink/adc128s022.pdf) analog to digital 
-converter chip as on the terasic De0 Nano._ 
+converter (ADC) chip as on the terasic De0 Nano._ 
 
 The ADC chip has a 16 clock SPI protocol for making analog readings. Internally this 
 verilog implementation holds a count of the current clock cycle.  When the clock cycle is
