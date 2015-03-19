@@ -24,7 +24,7 @@ reg    [7:0] leds;
 
 wire   [2:0] din_high;
 
-assign din_high = dinput[5:3];
+assign din_high = dinput[4:2];
 
 always @ (posedge dclk or posedge rst)
 begin
@@ -32,14 +32,14 @@ begin
    leds <= 8'b0000_0000;
  else
    case (din_high)
-     3'b000: leds <= 8'b0000_0000;
-     3'b001: leds <= 8'b0000_0001;
-     3'b010: leds <= 8'b0000_0011;
-     3'b011: leds <= 8'b0000_0111;
-     3'b100: leds <= 8'b0000_1111;
-     3'b101: leds <= 8'b0001_1111;
-     3'b110: leds <= 8'b0011_1111;
-     3'b111: leds <= 8'b0111_1111;
+     3'b000: leds <= 8'b0000_0001;
+     3'b001: leds <= 8'b0000_0011;
+     3'b010: leds <= 8'b0000_0111;
+     3'b011: leds <= 8'b0000_1111;
+     3'b100: leds <= 8'b0001_1111;
+     3'b101: leds <= 8'b0011_1111;
+     3'b110: leds <= 8'b0111_1111;
+     3'b111: leds <= 8'b1111_1111;
    endcase
 end
 

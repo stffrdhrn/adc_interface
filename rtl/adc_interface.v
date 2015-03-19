@@ -31,7 +31,7 @@ always @ (posedge sclk or posedge rst)
     sclk_count <= sclk_count + 1'b1;
 
 /* Handle address incrementing to cycle through reading
-   bytes from the ADC devive */
+   bytes from the ADC device input pins */
 always @ (posedge addr_inc or posedge rst)
   if (rst) 
     dout_addr <= 2'b00;
@@ -63,7 +63,7 @@ always @ (posedge sclk or posedge rst)
 /* Return static ram on read interface
  * Write shift register to static ram on first clock
  */ 
-always @ (posedge sclk) begin
+always @ (negedge sclk) begin
   if (sclk_count == 4'b0000) begin
      data_ram[dout_addr] <= din_ff;
   end
