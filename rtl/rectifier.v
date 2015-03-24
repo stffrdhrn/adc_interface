@@ -6,7 +6,7 @@
  *
  * This circuit creates a half rectifier. 
  */
-parameter BUS_WIDTH = 6;
+parameter BUS_WIDTH = 12;
 
 module rectifier(
   input  [BUS_WIDTH-1:0] din,

@@ -18,28 +18,30 @@ module led_driver(leds, rst, dclk, dinput);
 output [7:0] leds;
 input        rst;
 input        dclk;   // 44100 Hz
-input  [5:0] dinput; // 85Hz (sync to 44100Hz)
+input  [11:0] dinput; // 85Hz (sync to 44100Hz)
 
 reg    [7:0] leds;
 
-wire   [2:0] din_high;
+wire   [7:0] din_high;
 
-assign din_high = dinput[4:2];
+assign din_high = dinput[10:3];
 
 always @ (posedge dclk or posedge rst)
 begin
  if (rst) 
    leds <= 8'b0000_0000;
  else
-   case (din_high)
-     3'b000: leds <= 8'b0000_0001;
-     3'b001: leds <= 8'b0000_0011;
-     3'b010: leds <= 8'b0000_0111;
-     3'b011: leds <= 8'b0000_1111;
-     3'b100: leds <= 8'b0001_1111;
-     3'b101: leds <= 8'b0011_1111;
-     3'b110: leds <= 8'b0111_1111;
-     3'b111: leds <= 8'b1111_1111;
+   /* This is base 2 logarithm of the input */
+   casez (din_high)
+     8'b0000_0000: leds <= 8'b0000_0000;
+     8'b0000_0001: leds <= 8'b0000_0001;
+     8'b0000_001?: leds <= 8'b0000_0011;
+     8'b0000_01??: leds <= 8'b0000_0111;
+     8'b0000_1???: leds <= 8'b0000_1111;
+     8'b0001_????: leds <= 8'b0001_1111;
+     8'b001?_????: leds <= 8'b0011_1111;
+     8'b01??_????: leds <= 8'b0111_1111;
+     8'b1???_????: leds <= 8'b1111_1111;
    endcase
 end
 

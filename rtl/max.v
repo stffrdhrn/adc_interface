@@ -5,7 +5,7 @@
  */
 module max (din, dclk, rst, maxout);
 
-parameter BUS_WIDTH = 6;
+parameter BUS_WIDTH = 12;
 
 output [BUS_WIDTH-1:0]  maxout;
 input  [BUS_WIDTH-1:0]  din;
