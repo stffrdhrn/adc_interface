@@ -18,6 +18,7 @@ wire        rst;
 wire [1:0]  adc_addr;
 wire [11:0] adc_data;
 wire [5:0]  max;
+wire [5:0]  rectified_data;
 
 assign adc_sclk = clk;
 assign adc_addr = 2'b00;   // always select ADC input 0
@@ -41,9 +42,14 @@ clkdiv clkdivi (
   .clk_out(dclk),
   .rst(rst));     
 
+// Just output values that are above 2048 (midpoint)
+rectifier rectifieri (
+   .din(adc_data[11:6]), 
+   .dout(rectified_data));
+  
 // Max get the max adc value every 85hz
 max maxi (
-   .din(adc_data[11:6]), 
+   .din(rectified_data), 
    .dclk(dclk), 
    .rst(rst), 
    .maxout(max));
