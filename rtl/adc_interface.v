@@ -1,10 +1,10 @@
 /**
  * This ADC interface provides an serial to parallel interface for
  * a ADC chip. 
- * After reset the interface just continues to collect 1 reeding form the
+ * After reset the interface just loops collecting 1 reading from the
  * ADC chip every 16 sclk cycles and stores them into its internal memory
- * at one of 4 address spaces.  The data will be refresheed every 4x16 (64 cycles)
- * So a consumer should be setup to read the data form on of the 4 addresses. 
+ * at one of 4 address spaces.  The data will be refreshed every 4x16 (64 cycles)
+ * So a consumer should be setup to read the data before its gone. 
  */
 module adc_interface 
     (input [1:0]    addr,
