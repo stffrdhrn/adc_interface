@@ -6,14 +6,20 @@
  * at one of 4 address spaces.  The data will be refreshed every 4x16 (64 cycles)
  * So a consumer should be setup to read the data before its gone. 
  */
-module adc_interface 
-    (input [1:0]    addr,
-     output [11:0]  data,
-     input          sclk,
-     input          rst,
-     input          din,
-     output         dout);
+module adc_interface  (
+  addr, data,
+  din, dout,
+  sclk, rst);
 
+input [1:0]    addr;
+output [11:0]  data;
+input          sclk;
+input          rst;
+input          din;
+output         dout;
+      
+reg [11:0]    data;
+reg           dout;
 
 reg [3:0]     sclk_count;
 reg [1:0]     dout_addr; // We only want to select 4 of the 8 analog ports
